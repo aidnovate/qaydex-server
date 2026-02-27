@@ -50,6 +50,7 @@ class BaseLoginView(ABC, LoginView):
         data.update(self.get_extra_payload())
         return data
 
+
 @extend_schema(request=UserLoginSerializer, responses=UserOutSerializer)
 class UserLoginView(BaseLoginView):
     """View for logging in a user."""
