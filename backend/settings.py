@@ -36,8 +36,10 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # third party apps
     "rest_framework",
-    "drf_spectacular"
-    
+    "drf_spectacular",
+    "rest_framework_simplejwt",
+    "rest_framework.authtoken",
+    "dj_rest_auth",
     # local apps
     "users",
 ]
@@ -77,11 +79,14 @@ WSGI_APPLICATION = "backend.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("DB_NAME"),
+        "USER": os.getenv("DB_USER"),
+        "PASSWORD": os.getenv("DB_PASSWORD"),
+        "HOST": os.getenv("DB_HOST"),
+        "PORT": os.getenv("DB_PORT"),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
@@ -104,9 +109,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # rest framework settings
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
+    ],
 }
 
 # drf spectacular settings
@@ -118,6 +123,14 @@ SPECTACULAR_SETTINGS = {
     "REDOC_URL": "/docs/redoc/",
 }
 
+# simple jwt settings
+SIMPLE_JWT = {
+    "AUTH_HEADER_TYPES": ("Bearer",),
+}
+
+# dj rest auth settings
+REST_USE_JWT = True
+JWT_AUTH_COOKIE = "jwt-auth"
 
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
