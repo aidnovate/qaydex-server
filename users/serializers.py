@@ -35,6 +35,6 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 class UserOutSerializer(serializers.Serializer):
     """user serializer."""
 
-    refresh = serializers.CharField( read_only=True)
-    access = serializers.CharField( read_only=True)
+    refresh = serializers.CharField(read_only=True)
+    access = serializers.CharField(read_only=True)
     users = UserSerializer(read_only=True)
