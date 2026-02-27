@@ -20,7 +20,9 @@ urlpatterns = [
         "api/docs/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"
     ),
     path("admin/", admin.site.urls),
+    # local apps urls
     path("api/", include("users.urls", namespace="users")),
+    path("api/", include("schools.urls", namespace="schools")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

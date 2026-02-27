@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     "dj_rest_auth",
     # local apps
     "users",
+    "base",
+    "schools",
 ]
 
 MIDDLEWARE = [
